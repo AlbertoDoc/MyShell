@@ -1,0 +1,4 @@
+start ls 
+wait
+start date
+wait
