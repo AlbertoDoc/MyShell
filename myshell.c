@@ -1,7 +1,13 @@
-#include<stdio.h>
-#include<string.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <fcntl.h>
+#include <stdlib.h>
+#include <errno.h>
+#include <string.h>
 
 #include "systemfunctions.h"
+#include "errors.h"
 
 int main() {
 	char str[4096];
@@ -14,28 +20,28 @@ int main() {
 
 	while (fgets(str, 256, stdin) != NULL) {
 
-		// Pegando a linha de fgets e colocando em str
-		puts(str);
-
 		// Codigo abaixo relativo a separacao de palavra por palavra
 		token = strtok(str, " \t\n");
 		while (token != NULL) {
 			palavras[npalavras] = token;
 			npalavras++;
-			palavras[npalavras] = 0;
-
-			token = strtok(0, " \t\n");
+			token = strtok(NULL, " \t\n");
 		}
+		palavras[npalavras] = 0;
 
 		if (strcmp(palavras[0], "start") == 0) {
-			// TODO Criar funcao para lidar com o comando start
+			startProcess(palavras, npalavras);
 		} else if (strcmp(palavras[0], "wait") == 0) {
-			// TODO Criar funcao para lidar com o comando wait
+			waitProcess();
+		} else if (strcmp(palavras[0], "exit") == 0 || strcmp(palavras[0], "quit") == 0) {
+			exit(0);
+		} else {
+			printf("myshell: Comando desconhecido: %s\n", palavras[0]);
 		}
 
 		npalavras = 0;
 		printf("myshell> ");
 	}
 
-	return 0;
+	return EXIT_SUCCESS;
 }
