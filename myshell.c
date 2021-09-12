@@ -1,24 +1,18 @@
 #include<stdio.h>
 #include<string.h>
 
+#include "systemfunctions.h"
+
 int main() {
 	char str[4096];
 	char * palavras[100];
 	int npalavras = 0;
 
-	FILE *fp;
-
-	fp = fopen("myscript.txt", "r");
-
-	if (fp == NULL) {
-		perror("Error opening file");
-		return -1;
-	}
-
 	char *token;
 
-	while (fgets(str, 4096, fp) != NULL) {
-		printf("myshell> ");
+	printf("myshell> ");
+
+	while (fgets(str, 256, stdin) != NULL) {
 
 		// Pegando a linha de fgets e colocando em str
 		puts(str);
@@ -40,9 +34,8 @@ int main() {
 		}
 
 		npalavras = 0;
+		printf("myshell> ");
 	}
-
-	fclose(fp);
 
 	return 0;
 }
