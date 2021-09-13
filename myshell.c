@@ -16,9 +16,9 @@ int main() {
 
 	char *token;
 
+	while (1) {
 	printf("myshell> ");
-
-	while (fgets(str, 256, stdin) != NULL) {
+	token = fgets(str, 256, stdin);
 
 		// Codigo abaixo relativo a separacao de palavra por palavra
 		token = strtok(str, " \t\n");
@@ -31,6 +31,7 @@ int main() {
 
 		if (strcmp(palavras[0], "start") == 0) {
 			startProcess(palavras, npalavras);
+			sleep(1);
 		} else if (strcmp(palavras[0], "wait") == 0) {
 			waitProcess();
 		} else if (strcmp(palavras[0], "exit") == 0 || strcmp(palavras[0], "quit") == 0) {
@@ -40,7 +41,6 @@ int main() {
 		}
 
 		npalavras = 0;
-		printf("myshell> ");
 	}
 
 	return EXIT_SUCCESS;

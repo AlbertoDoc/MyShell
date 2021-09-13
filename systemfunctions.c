@@ -19,11 +19,9 @@ void startProcess(char *argv[], int argc) {
 		args[i] = argv[i];
 	}
 	args[argc] = NULL;
-	printf("execucao \n");
+
 	if ((processId = fork()) == 0) {
-		printf("entrou 1\n");
-		if (execvp(args[0], args) == -1) {
-			printf("entrou 2\n");
+		if (execvp(args[1], &args[1]) == -1) {
 			switch (errno) {
 				case EACCES:
 					errorPermission();
@@ -37,9 +35,8 @@ void startProcess(char *argv[], int argc) {
 			}
 		}
 	} else {
-			printf("entrou 3\n");
 			printf("myshell: processo %d iniciado.\n", processId);
-			wait(0);
+			//wait(0);
 	}	
 }
 
