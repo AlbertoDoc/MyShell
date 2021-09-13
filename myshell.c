@@ -16,10 +16,9 @@ int main() {
 
 	char *token;
 
-	while (1) {
 	printf("myshell> ");
-	token = fgets(str, 256, stdin);
 
+	while (fgets(str, 256, stdin) != NULL) {
 		// Codigo abaixo relativo a separacao de palavra por palavra
 		token = strtok(str, " \t\n");
 		while (token != NULL) {
@@ -44,6 +43,7 @@ int main() {
 		}
 
 		npalavras = 0;
+		printf("myshell> ");
 	}
 
 	return EXIT_SUCCESS;
