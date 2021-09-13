@@ -5,5 +5,6 @@ void errorInvalidArguments();
 void errorPermission();
 void errorMemory();
 void errorNotSuchExecutable();
+void errorPidNotExist();
 
 #endif

@@ -1,3 +1,5 @@
+#define _POSIX_SOURCE
+
 #include <stdio.h>
 #include <sys/types.h>
 #include <unistd.h>
@@ -36,7 +38,6 @@ void startProcess(char *argv[], int argc) {
 		}
 	} else {
 			printf("myshell: processo %d iniciado.\n", processId);
-			//wait(0);
 	}	
 }
 
@@ -89,4 +90,21 @@ void waitProcess() {
 	if (childrenCount == 0) {
 		printf("myshell: não há processos restantes.\n");
 	}
+}
+
+void killProcess(pid_t pid) {
+		int killResult = kill(pid, SIGTERM);
+
+		if (killResult == -1) {
+			switch (errno) {
+				case EPERM:
+					errorPermission();
+					break;
+				case ESRCH:
+					errorPidNotExist();
+					break;
+			}
+		} else if (killResult == 0) {
+			printf("myshell: processo %d foi finalizado.\n", pid);
+		}
 }

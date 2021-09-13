@@ -22,3 +22,8 @@ void errorNotSuchExecutable() {
 	printf("myshell: Executável não existe \n");
 	exit(EXIT_FAILURE);
 }
+
+void errorPidNotExist() {
+	printf("myshell: Esse pid não corresponde a nenhum processo ativo\n");
+	exit(EXIT_FAILURE);
+}

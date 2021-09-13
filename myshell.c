@@ -1,3 +1,5 @@
+#define _POSIX_SOURCE
+
 #include <stdio.h>
 #include <unistd.h>
 #include <sys/types.h>
@@ -33,6 +35,9 @@ int main() {
 			sleep(1);
 		} else if (strcmp(palavras[0], "wait") == 0) {
 			waitProcess();
+		} else if(strcmp(palavras[0], "kill") == 0) {
+			killProcess(atoi(palavras[1]));
+			sleep(1);
 		} else if (strcmp(palavras[0], "exit") == 0 || strcmp(palavras[0], "quit") == 0) {
 			exit(0);
 		} else {
