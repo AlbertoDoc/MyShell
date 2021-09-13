@@ -8,6 +8,7 @@
 #include <string.h>
 
 #include "systemfunctions.h"
+#include "errors.h"
 
 void startProcess(char *argv[], int argc) {
 	char * args[argc];
@@ -43,8 +44,6 @@ void startProcess(char *argv[], int argc) {
 }
 
 void waitProcess() {
-	pid_t processId;
-
 	int corpse;
 	int status;
 	int childrenCount = 0;
