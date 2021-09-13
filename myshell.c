@@ -36,6 +36,9 @@ int main() {
 			waitProcess();
 		} else if (strcmp(palavras[0], "exit") == 0 || strcmp(palavras[0], "quit") == 0) {
 			exit(0);
+		} else if (strcmp(palavras[0], "run") == 0) {
+			runProcess(palavras, npalavras);
+			sleep(1);
 		} else {
 			printf("myshell: Comando desconhecido: %s\n", palavras[0]);
 		}

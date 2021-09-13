@@ -90,3 +90,79 @@ void waitProcess() {
 		printf("myshell: não há processos restantes.\n");
 	}
 }
+
+void runProcess(char *argv[], int argc){
+	char * args[argc];
+	pid_t processId;
+
+
+	for (int i = 0; i < argc; i++) {
+		args[i] = argv[i];
+	}
+	args[argc] = NULL;
+
+	if ((processId = fork()) == 0) {
+		if (execvp(args[1], &args[1]) == -1) {
+			switch (errno) {
+				case EACCES:
+					errorPermission();
+					break;
+				case ENOMEM:
+					errorMemory();
+					break;
+				case ENOENT:
+					errorNotSuchExecutable();
+					break;
+			}
+		}
+	} else {
+		int corpse;
+		int status;
+		int childrenCount = 0;
+
+		while ((corpse = waitpid(processId, &status, 0)) > 0) {
+			childrenCount++;
+
+			if (status == 0) {
+				printf("myshell: processo %d finalizou normalmente com status %d.\n", corpse, status);
+			} else {
+				char * signalDescription;
+				switch (status) {
+					case 1:
+						signalDescription = "SIGHUP";
+						break;
+					case 2:
+						signalDescription = "SIGINT";
+						break;
+					case 3:
+						signalDescription = "SIGQUIT";
+						break;
+					case 4:
+						signalDescription = "SIGILL";
+						break;
+					case 5:
+						signalDescription = "SIGTRAP";
+						break;
+					case 6:
+						signalDescription = "SIGABRT";
+						break;
+					case 7:
+						signalDescription = "SIGEMT";
+						break;
+					case 8:
+						signalDescription = "SIGFPE";
+						break;
+					case 9:
+						signalDescription = "SIGKILL";
+						break;
+				}
+
+				printf("myshell: processo %d finalizou de formal anormal com sinal %d: %s.\n", corpse, status, signalDescription);
+			}
+		}
+		
+		if (childrenCount == 0) {
+			printf("myshell: não há processos restantes.\n");
+		}
+	}	
+}
