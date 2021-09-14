@@ -27,16 +27,15 @@ Foram utilizadas as seguintes tecnologias para o desenvolvimento:
 ## 🦮 Instruções Gerais para utilização
 
 
-- Depois de realizar o clone do repositório é necessário caminhar até a pasta designada do projeto e executar o comando:
+- Depois de realizar o clone do repositório é necessário caminhar até a pasta designada do projeto e executar os comandos:
 
-```c
-gcc *.c // para compilar e
-```
-e 
-```c
-./a.out // para executar
+    ```c
+    gcc *.c // para compilar e
+    ```
+    ```c
+    ./a.out // para executar
 
-```
+    ```
 
 - Os seguintes comandos podem ser utilizados para verificação do funcionamento do projeto:
     - start {comando a ser executado}
