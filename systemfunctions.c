@@ -83,7 +83,7 @@ void waitProcess() {
 					break;
 			}
 
-			printf("myshell: processo %d finalizou de formal anormal com sinal %d: %s.\n", corpse, status, signalDescription);
+			printf("myshell: processo %d finalizou de forma anormal com sinal %d: %s.\n", corpse, status, signalDescription);
 		}
 	}
 	
@@ -106,6 +106,39 @@ void killProcess(pid_t pid) {
 			}
 		} else if (killResult == 0) {
 			printf("myshell: processo %d foi finalizado.\n", pid);
+		}
+}
+
+
+void stopProcess(pid_t pid){
+	int stoppingProcess = kill(pid, SIGSTOP);
+	if (stoppingProcess == -1) {
+			switch (errno) {
+				case EPERM:
+					errorPermission();
+					break;
+				case ESRCH:
+					errorPidNotExist();
+					break;
+			}
+		} else if (stoppingProcess == 0) {
+			printf("myshell: processo %d parou a execução.\n", pid);
+		}
+}
+
+void continueProcess(pid_t pid){
+	int continueProcess = kill(pid, SIGCONT);
+	if (continueProcess == -1) {
+			switch (errno) {
+				case EPERM:
+					errorPermission();
+					break;
+				case ESRCH:
+					errorPidNotExist();
+					break;
+			}
+		} else if (continueProcess == 0) {
+			printf("myshell: processo %d voltou a execução.\n", pid);
 		}
 }
 

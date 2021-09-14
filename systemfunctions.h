@@ -4,6 +4,8 @@
 void startProcess(char *argv[], int argc);
 void waitProcess();
 void killProcess(pid_t pid);
+void stopProcess(pid_t pid);
+void continueProcess(pid_t pid);
 void runProcess(char *argv[], int argc);
 
 #endif

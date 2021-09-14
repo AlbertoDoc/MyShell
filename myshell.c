@@ -38,6 +38,12 @@ int main() {
 		} else if(strcmp(palavras[0], "kill") == 0) {
 			killProcess(atoi(palavras[1]));
 			sleep(1);
+		} else if(strcmp(palavras[0], "stop") == 0) {
+			stopProcess(atoi(palavras[1]));
+			sleep(1);
+		} else if(strcmp(palavras[0], "continue") == 0) {
+			continueProcess(atoi(palavras[1]));
+			sleep(1);
 		} else if (strcmp(palavras[0], "exit") == 0 || strcmp(palavras[0], "quit") == 0) {
 			exit(0);
 		} else if (strcmp(palavras[0], "run") == 0) {
