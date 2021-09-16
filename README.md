@@ -29,11 +29,11 @@ Foram utilizadas as seguintes tecnologias para o desenvolvimento:
 
 - Depois de realizar o clone do repositório é necessário caminhar até a pasta designada do projeto e executar os comandos:
 
-    ```c
-    gcc *.c // para compilar e
+    ```bash
+    make # para compilar e
     ```
-    ```c
-    ./a.out // para executar
+    ```bash
+    ./myshell # para executar
 
     ```
 

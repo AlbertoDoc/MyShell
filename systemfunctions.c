@@ -93,7 +93,7 @@ void waitProcess() {
 }
 
 void killProcess(pid_t pid) {
-		int killResult = kill(pid, SIGTERM);
+		int killResult = kill(pid, SIGKILL);
 
 		if (killResult == -1) {
 			switch (errno) {
